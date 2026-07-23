@@ -151,6 +151,14 @@
   .connect p { color: var(--muted); font-size: 14px; max-width: 560px; margin: 0 auto 18px; }
   .connect code { font-family: var(--mono); font-size: 12.5px; background: #05080c; border: 1px solid var(--line); color: #cfe8ff; padding: 3px 8px; border-radius: 5px; }
 
+  /* ---------- Troubleshooting ---------- */
+  .trouble { list-style: none; margin: 18px auto 0; padding: 0; max-width: 640px; text-align: left; display: flex; flex-direction: column; gap: 12px; }
+  .trouble li { position: relative; padding: 12px 14px 12px 40px; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in oklab, var(--panel) 40%, transparent); color: var(--muted); font-size: 13.5px; line-height: 1.55; }
+  .trouble li::before { content: "!"; position: absolute; left: 12px; top: 12px; width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; font-family: var(--mono); font-size: 11px; font-weight: 700; color: #04121b; background: var(--accent); }
+  .trouble li b { color: var(--text); }
+  .trouble code { font-family: var(--mono); font-size: 11.5px; background: #05080c; border: 1px solid var(--line); color: #cfe8ff; padding: 2px 6px; border-radius: 5px; word-break: break-all; }
+  .trouble-note { color: var(--muted); font-size: 12.5px; max-width: 640px; margin: 16px auto 0; }
+
   /* ---------- Footer ---------- */
   footer { border-top: 1px solid var(--line); padding: 30px 0 46px; color: var(--muted); font-size: 12.5px; }
   .foot-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
@@ -319,6 +327,21 @@
       <h3>Connect your phone to your PC</h3>
       <p>JARVIS on Android is a window into the copy running on your Windows machine. Turn on remote mode once, pair with a QR, and your phone drives the same brain from anywhere on your Wi-Fi.</p>
       <code>desktop.json → {"remote": true}</code>
+    </div>
+  </div>
+</section>
+
+<section id="trouble">
+  <div class="wrap">
+    <div class="connect">
+      <h3>Phone won't connect? The usual three</h3>
+      <ul class="trouble">
+        <li><b>Installed over an old APK?</b> The app is now signed with a fresh key, so Android refuses to update in place. <b>Uninstall the old JARVIS app first</b>, then install the new APK. Your saved address is wiped by that anyway — scan the PAIR QR again on first launch.</li>
+        <li><b>"Can't reach that address" / spin forever?</b> The phone and PC must be on the <b>same Wi-Fi</b>, and port <code>3210</code> must be open. Run the <code>enable-lan.bat</code> from the download (right-click → Run as administrator) once, or open an admin PowerShell and allow it:
+          <code>New-NetFirewallRule -DisplayName "JARVIS LAN" -Direction Inbound -LocalPort 3210 -Protocol TCP -Action Allow -Profile Private</code></li>
+        <li><b>"Connected, but not paired"?</b> The QR you scanned is stale. Re-open JARVIS on the PC, click <b>PAIR</b> again, and scan the fresh QR (or paste its full <code>?pair=…</code> URL into the app). A re-scan always overrides a saved address.</li>
+      </ul>
+      <p class="trouble-note">JARVIS on Android is a remote window into your PC — there is no brain on the phone. If the PC is off or asleep, the app can do nothing, by design.</p>
     </div>
   </div>
 </section>
