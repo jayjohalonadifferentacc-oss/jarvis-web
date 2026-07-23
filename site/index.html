@@ -171,6 +171,9 @@
   footer { border-top: 1px solid var(--line); padding: 30px 0 46px; color: var(--muted); font-size: 12.5px; }
   .foot-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
   .foot-inner .mono { font-family: var(--mono); letter-spacing: 0.2em; color: var(--accent); }
+  .foot-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 10px; font-size: 11.5px; color: var(--muted); }
+  .foot-meta a { color: var(--muted); text-decoration: none; border-bottom: 1px dotted var(--line); }
+  .foot-meta a:hover { color: var(--accent); border-color: var(--accent); }
 
   /* ---------- Responsive ---------- */
   @media (max-width: 820px) {
@@ -367,6 +370,11 @@
   <div class="wrap foot-inner">
     <span class="mono">JARVIS</span>
     <span>Local-first personal AI · v3.0.0 · Runs free on Ollama</span>
+  </div>
+  <div class="wrap foot-meta">
+    <span>Updated 2026-07-23</span>
+    <a href="https://github.com/jayjohalonadifferentacc-oss/jarvis-web/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a>
+    <a href="#trouble">Phone won't connect?</a>
   </div>
 </footer>
 
