@@ -226,6 +226,10 @@
   <span class="wn-item"><b>Mobile</b> — the HUD adapts to phone screens; the connector shows clear connect / paired / unreachable states.</span>
   <span class="wn-sep">·</span>
   <span class="wn-item"><b>Setup</b> — one-click <code>enable-lan.bat</code> opens the firewall so your phone reaches your PC.</span>
+  <span class="wn-sep">·</span>
+  <span class="wn-item"><b>Brain</b> — run on <b>Hermes/Nous</b> with <code>JARVIS_PROVIDER=nous</code> (cloud, no local model), or keep Ollama local.</span>
+  <span class="wn-sep">·</span>
+  <span class="wn-item"><b>Subagents</b> — JARVIS can dispatch specialist lenses (Market Analyst, UI Designer, Coder, Trader, Researcher) via <code>dispatch_agent</code>.</span>
 </div>
 
 <section id="features">
@@ -303,7 +307,7 @@
             <li>Download <code>JARVIS_3.0.0_x64-setup.exe</code> above.</li>
             <li>Run it. Windows SmartScreen may say "protected your PC" — click <b>More info → Run anyway</b> (it's a self-signed sideload, not malware).</li>
             <li>Finish the installer. JARVIS launches to the system tray.</li>
-            <li>First run needs a local model: install <a href="https://ollama.com" rel="noopener" style="color:var(--accent)">Ollama</a>, then <code>ollama pull qwen3:4b</code>.</li>
+            <li>First run needs a brain. Two options: keep it <b>local</b> (install <a href="https://ollama.com" rel="noopener" style="color:var(--accent)">Ollama</a>, then <code>ollama pull qwen2.5:3b</code>), or run on <b>Hermes/Nous</b> — set <code>JARVIS_PROVIDER=nous</code> and JARVIS thinks via the Nous cloud brain (no local model needed).</li>
           </ol>
         </details>
       </div>

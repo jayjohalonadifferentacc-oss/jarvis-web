@@ -69,3 +69,35 @@
 ### Quality gates (all green)
 - `tsc --noEmit` clean · `vitest` 422 passing · live E2E `E2E_PAIRING_OK` · public site
   `SITE_OK` (0 console errors).
+
+## v3.1.0 — Hermes brain, subagents, update channel
+
+### Brain: run JARVIS on "you" (Hermes/Nous)
+- **New `nous` provider.** `JARVIS_PROVIDER=nous` makes JARVIS think via the Nous
+  inference API (the same cloud brain Hermes runs on), model `tencent/hy3:free` by
+  default. No local model required. The API key is resolved at runtime from
+  `JARVIS_NOUS_API_KEY` or, with none set, from Hermes' own `auth.json` — never
+  hardcoded. Ollama stays the default for offline use.
+- Verified live: `/api/health` reports `provider:nous`, and a chat turn returned a
+  Nous-generated answer.
+
+### Subagents: dispatch specialist lenses
+- **New `dispatch_agent` tool.** JARVIS can launch a focused subagent — Market
+  Analyst, UI Designer, Coder, Trader, or Researcher — each a Nous call with a
+  role-specific persona, returning its analysis as a tool result. Governed by the
+  gate (risk `network`, so it asks before launching). Subagents reason on the Nous
+  model independent of the main brain.
+
+### Update channel
+- **New `/api/version`** checks the GitHub `latest` release server-side and reports
+  `updateAvailable` + the release URL — a real update check using the existing
+  GitHub releases, no signing ceremony. `/api/health` now reports the version from a
+  single source. (Full auto-*install* remains a follow-up: the Tauri updater plugin
+  needs a signing keypair + `.sig` artifacts in the release pipeline.)
+
+### Verification added
+- `e2e/desktop-launcher.mjs`: proves the Tauri boot page detects the :3210 backend and
+  points the app iframe at it. `node e2e/desktop-launcher.mjs` → `DESKTOP_LAUNCHER_OK`.
+- Phone voice confirmed: `/api/tts` returns Kokoro `audio/wav`, so the phone speaks
+  via the PC's local voice engine.
+- `vitest` 424 passing · `E2E_PAIRING_OK` · `DESKTOP_LAUNCHER_OK` · `tsc` clean.
